@@ -13,13 +13,24 @@ export class DataService {
 
   getPeriodicElements(
     pageIndex: number,
-    itemsPerPage: number
+    itemsPerPage: number,
+    filterValue: string
   ): Observable<{ paginatedData: PeriodicElement[]; count: number }> {
     const startIndex = pageIndex * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
-    const paginatedData = this.periodicElements().slice(startIndex, endIndex);
+    let paginatedData = this.periodicElements().slice(startIndex, endIndex);
     const count = this.periodicElements().length;
+
+    if (filterValue) {
+      const filteredData = this.periodicElements().filter((element) =>
+        Object.values(element).some((val) =>
+          val.toString().toLowerCase().includes(filterValue.toLowerCase())
+        )
+      );
+
+      paginatedData = filteredData.slice(startIndex, endIndex);
+    }
 
     return of({ paginatedData, count }).pipe(delay(2000));
   }
@@ -28,8 +39,6 @@ export class DataService {
     const index = this.periodicElements().findIndex(
       (element) => element.position === id
     );
-
-    console.log(index);
 
     const data = this.periodicElements();
 

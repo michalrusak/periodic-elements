@@ -1,6 +1,16 @@
 <div class="table">
+
+  <form [formGroup]="form">
+    <div>
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input type="text" matInput formControlName="filter">
+      </mat-form-field>
+    </div>
+  </form>
+
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource">
 
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
