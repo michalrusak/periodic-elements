@@ -18,11 +18,26 @@ export class DataService {
     const startIndex = pageIndex * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
-    const data = [...this.periodicElements()];
-
-    const paginatedData = data.slice(startIndex, endIndex);
-    const count = data.length;
+    const paginatedData = this.periodicElements().slice(startIndex, endIndex);
+    const count = this.periodicElements().length;
 
     return of({ paginatedData, count }).pipe(delay(2000));
+  }
+
+  updatePeriodicElement(id: number, name: string): void {
+    const index = this.periodicElements().findIndex(
+      (element) => element.position === id
+    );
+
+    console.log(index);
+
+    const data = this.periodicElements();
+
+    if (index !== -1) {
+      const updatedData = [...data];
+      updatedData[index] = { ...updatedData[index], name };
+
+      this.periodicElements.set(updatedData);
+    }
   }
 }
