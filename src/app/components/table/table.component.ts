@@ -3,8 +3,8 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { startWith, Subscription, switchMap } from 'rxjs';
-import { PeriodicElement } from '../models/periodicElement.interface';
-import { DataService } from '../services/data.service';
+import { PeriodicElement } from '../../models/periodicElement.interface';
+import { DataService } from '../../services/data.service';
 import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
