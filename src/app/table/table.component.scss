@@ -1,0 +1,10 @@
+.table {
+  margin: 15px 30px;
+  min-height: calc(100vh - 128px - 30px);
+}
+
+@media screen and (max-width: 598px) {
+  .table {
+    min-height: calc(100vh - 112px - 30px);
+  }
+}
